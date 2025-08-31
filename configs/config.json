@@ -1,0 +1,59 @@
+{
+  "data": {
+    "input_file": "data/review-Wyoming_10.json",
+    "output_dir": "data/processed",
+    "sample_size": 50000,
+    "chunk_size": 32
+  },
+  "feature_engineering": {
+    "num_topics_lda": 5,
+    "num_keywords": 5,
+    "sentiment_model": "cardiffnlp/twitter-roberta-base-sentiment-latest"
+  },
+  "model": {
+    "model_name": "distilbert-base-uncased",
+    "max_length": 512,
+    "num_labels": 4,
+    "batch_size": 16,
+    "num_epochs": 3,
+    "learning_rate": 2e-5,
+    "weight_decay": 0.01,
+    "warmup_steps": 500,
+    "output_dir": "models/review_classifier",
+    "seed": 42,
+    "use_lora": true,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.1
+  },
+  "active_learning": {
+    "n_iterations": 5,
+    "samples_per_iteration": 100,
+    "strategy": "uncertainty_entropy"
+  },
+  "policy_enforcement": {
+    "use_ml": true,
+    "combine_methods": true,
+    "risk_thresholds": {
+      "approve": 0.3,
+      "review": 0.7,
+      "reject": 0.8
+    }
+  },
+  "labeling": {
+    "llm_models": [
+      "google/gemma-2-2b-it",
+      "Qwen/Qwen2-1.5B-Instruct",
+      "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    ],
+    "consensus_method": "confidence_weighted",
+    "quality_threshold": 0.6
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/application.log",
+    "max_file_size": "100MB",
+    "backup_count": 5
+  }
+}
+
