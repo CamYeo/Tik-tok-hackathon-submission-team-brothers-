@@ -1,5 +1,7 @@
 # TikTok Hackathon: Review Quality Assessment System
 
+Link to Google Drive: https://drive.google.com/drive/folders/1EePIfGRZR_lX24NaymK04lJ0XFjzRS3C?usp=drive_link
+
 A comprehensive machine learning system for evaluating the quality and relevancy of user-generated reviews and content, specifically designed for social media platforms like TikTok. This system combines advanced natural language processing, multi-LLM consensus labeling, active learning, and policy enforcement to automatically assess content quality and detect violations.
 
 ## 🏆 Project Overview
